@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { selectAllUsers } from "../users/usersSlice";
 import { postAdded } from "./postSlice";
 const AddPostForm = () => {
 
@@ -7,24 +8,34 @@ const AddPostForm = () => {
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
+    const [userId, setUserId] = useState('')
 
     const onTitleChanged = e => setTitle(e.target.value);
     const onContentChanged = e => setContent(e.target.value);
+    const onAuthorChanged = e => setUserId(e.target.value);
 
-     const savePost = () => {
+    const savePost = () => {
         if(title && content){
             dispatch(
-                postAdded(title, content)
+                postAdded(title, content, userId)
             )
             setTitle('')
             setContent('')
         }
-     }
+    }
+    
+    const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
+    
+    const users = useSelector(selectAllUsers)
+    const usersOptions = users.map( user => (
+        <option key={user.id} value={user.id}> {user.name} </option>
+    ))
 
     return (
         <section>
             <h2>Add a New Post</h2>
             <form>
+
                 <label htmlFor="postTitle">Post Title:</label>
                 <input
                     type="text"
@@ -33,6 +44,13 @@ const AddPostForm = () => {
                     value={title}
                     onChange={onTitleChanged}
                 />
+
+                <label htmlFor="postAuthor">Author Name:</label>
+                <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
+                    <option value=""></option>
+                    {usersOptions}
+                </select>
+
                 <label htmlFor="postContent">Content:</label>
                 <textarea
                     id="postContent"
@@ -40,7 +58,8 @@ const AddPostForm = () => {
                     value={content}
                     onChange={onContentChanged}
                 />
-                <button type="button" onClick={savePost}> Save Post </button>
+
+                <button type="button" onClick={savePost} disabled={!canSave}> Save Post </button>
             </form>
         </section>
     )
