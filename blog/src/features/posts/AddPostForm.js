@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllUsers } from "../users/usersSlice";
-import { postAdded } from "./postSlice";
+import { postAdded, selectAllPosts } from "./postSlice";
 const AddPostForm = () => {
+
+    const post = useSelector(selectAllPosts)
 
     const dispatch = useDispatch();
 
@@ -23,7 +25,7 @@ const AddPostForm = () => {
             setContent('')
         }
     }
-    
+
     const canSave = Boolean(title) && Boolean(content) && Boolean(userId);
     
     const users = useSelector(selectAllUsers)
@@ -60,6 +62,7 @@ const AddPostForm = () => {
                 />
 
                 <button type="button" onClick={savePost} disabled={!canSave}> Save Post </button>
+                <button type="button" disabled={post.length == 0 ? true: false}> Remove all posts </button>
             </form>
         </section>
     )
