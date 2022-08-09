@@ -1,17 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = [
-    {id: '0', name: 'Author 1'},
-    {id: '1', name: 'Author 2'},
-    {id: '2', name: 'Author 3'}
+    {id: '0', name: 'Mike'},
+    {id: '1', name: 'Juliet'},
+    {id: '2', name: 'Yankee'}
 ]
 
 const userSlice = createSlice({
     name: 'users',
     initialState: initialState,
-    reducers: {
-
-    } 
+    reducers: {} 
 })
 
 

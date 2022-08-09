@@ -2,25 +2,19 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllUsers } from "../users/usersSlice";
 import { postAdded, removeAllPosts, selectAllPosts } from "./postSlice";
+
 const AddPostForm = () => {
-
     const post = useSelector(selectAllPosts)
-
+    
     const dispatch = useDispatch();
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [userId, setUserId] = useState('')
 
-    const onTitleChanged = e => setTitle(e.target.value);
-    const onContentChanged = e => setContent(e.target.value);
-    const onAuthorChanged = e => setUserId(e.target.value);
-
     const savePost = () => {
         if(title && content){
-            dispatch(
-                postAdded(title, content, userId)
-            )
+            dispatch(postAdded(title, content, userId))
             setTitle('')
             setContent('')
         }
@@ -36,18 +30,17 @@ const AddPostForm = () => {
         <section>
             <h2>Add a New Post</h2>
             <form>
-
                 <label htmlFor="postTitle">Post Title:</label>
                 <input
                     type="text"
                     id="postTitle"
                     name="postTitle"
                     value={title}
-                    onChange={onTitleChanged}
+                    onChange={(e) => setTitle(e.target.value)}
                 />
 
                 <label htmlFor="postAuthor">Author Name:</label>
-                <select id="postAuthor" value={userId} onChange={onAuthorChanged}>
+                <select id="postAuthor" value={userId} onChange={(e) => setUserId(e.target.value)}>
                     <option value=""></option>
                     {usersOptions}
                 </select>
@@ -57,11 +50,17 @@ const AddPostForm = () => {
                     id="postContent"
                     name="postContent"
                     value={content}
-                    onChange={onContentChanged}
+                    onChange={(e) => setContent(e.target.value)}
                 />
 
-                <button type="button" onClick={savePost} disabled={!canSave}> Save Post </button>
-                <button type="button" onClick={() => dispatch(removeAllPosts())} disabled={post.length == 0 ? true: false}> Remove all posts </button>
+                <button type="button" 
+                        onClick={savePost} 
+                        disabled={!canSave}> Publish 
+                </button>
+                <button type="button" 
+                        onClick={() => dispatch(removeAllPosts())} 
+                        disabled={post.length == 0 ? true : false}> Remove all posts 
+                </button>
             </form>
         </section>
     )
