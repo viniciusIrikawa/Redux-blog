@@ -24,6 +24,11 @@ cd ./blog
 npm install or yarn install
 ```
 
+5 - Start the project
+```
+npm start or yarn start
+```
+
 ## 📷 Photos 
 
 ![print1](https://user-images.githubusercontent.com/55358204/202591760-945e8c50-8e12-48fd-b183-3171d7d9a11d.png)
