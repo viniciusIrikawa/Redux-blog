@@ -23,7 +23,7 @@ const PostList = () => {
   return (
     <section> 
         <h2> Posts </h2>
-        {posts.length == 0 ?  "Nothing yet...🤷‍♂️" : renderedPosts}
+        {posts.length === 0 ?  "Nothing yet...🤷‍♂️" : renderedPosts}
     </section>
   )
 }

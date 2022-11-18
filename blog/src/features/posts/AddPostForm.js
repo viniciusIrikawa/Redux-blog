@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllUsers } from "../users/usersSlice";
@@ -59,7 +60,7 @@ const AddPostForm = () => {
                 </button>
                 <button type="button" 
                         onClick={() => dispatch(removeAllPosts())} 
-                        disabled={post.length == 0 ? true : false}> Remove all posts 
+                        disabled={post.length === 0 ? true : false}> Remove all posts 
                 </button>
             </form>
         </section>

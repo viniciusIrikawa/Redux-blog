@@ -1,3 +1,4 @@
+import React from 'react'
 import AddPostForm from "./features/posts/AddPostForm";
 import PostList from "./features/posts/PostList";
 
