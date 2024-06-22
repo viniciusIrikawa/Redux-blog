@@ -33,6 +33,3 @@ npm start or yarn start
 
 ![print1](https://user-images.githubusercontent.com/55358204/202591760-945e8c50-8e12-48fd-b183-3171d7d9a11d.png)
 ![print2](https://user-images.githubusercontent.com/55358204/202591767-fc239b97-219b-403e-a432-9e9d0f0d5215.png)
-
-
-# Thanks!! 🙋‍♂️
